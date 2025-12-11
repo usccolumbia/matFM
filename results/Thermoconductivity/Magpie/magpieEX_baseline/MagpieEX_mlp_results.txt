@@ -1,0 +1,9 @@
+Per-fold results:
+Fold 0: MAE=11.201125, R²=0.179765
+Fold 1: MAE=9.389129, R²=0.387820
+Fold 2: MAE=9.554831, R²=0.014942
+Fold 3: MAE=18.276604, R²=0.288686
+Fold 4: MAE=11.716923, R²=0.144654
+
+Final MAE mean ± std: 12.027722 ± 3.252868
+Final R² mean ± std: 0.203173 ± 0.127130

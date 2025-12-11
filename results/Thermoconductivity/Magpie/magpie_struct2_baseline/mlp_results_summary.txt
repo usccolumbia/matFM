@@ -1,0 +1,9 @@
+Per-fold results for MLP model:
+Fold 0: MAE=14.253220, R²=0.096462
+Fold 1: MAE=9.661837, R²=0.428259
+Fold 2: MAE=8.584420, R²=-0.152742
+Fold 3: MAE=16.141010, R²=0.306929
+Fold 4: MAE=14.588190, R²=-4.827863
+
+Final MAE mean ± std: 12.645735 ± 2.965536
+Final R² mean ± std: -0.829791 ± 2.008768

@@ -1,0 +1,9 @@
+Per-fold results for RF model:
+Fold 0: MAE=12.735158, R²=0.063107
+Fold 1: MAE=7.318407, R²=0.522329
+Fold 2: MAE=8.457240, R²=-1.818622
+Fold 3: MAE=13.124625, R²=0.425508
+Fold 4: MAE=8.347357, R²=-0.366888
+
+Final MAE mean ± std: 9.996557 ± 2.430909
+Final R² mean ± std: -0.234913 ± 0.851345
