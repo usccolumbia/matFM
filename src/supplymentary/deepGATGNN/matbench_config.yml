@@ -1,0 +1,167 @@
+Job:
+    run_mode: "Training"  
+    #{Training, Predict, Repeat, CV, Hyperparameter, Ensemble, Analysis}
+   
+    CV:
+        job_name: "MATbench"
+        reprocess: "False"    
+        model: GATGNN_demo #deepGATGNN_demo   
+        write_output: "True"
+        parallel: "True"
+        seed: 18012019     
+        ###specific options
+        #number of folds for n-fold CV
+        cv_folds: 5    
+    Training:
+        job_name: "baseline"
+        reprocess: "False"    
+        model: GATGNN_demo #deepGATGNN_demo   
+        write_output: "True"
+        load_model: "False"
+        save_model: "True"
+        model_path: "baseline.pth"
+        parallel: "False"
+        seed: 1234   
+        ###specific options
+        #number of folds for n-fold CV
+        #cv_folds: 5   
+    #job_name: "my_train_job"
+    #    reprocess: "False"    
+    #    model: CGCNN_demo   
+    #    load_model: "False"
+    #    save_model: "True"
+    #    model_path: "my_model.pth"
+    #    write_output: "True"
+    #    parallel: "True"
+    #    #seed=0 means random initalization
+    #    seed: 0 
+
+    Predict:
+        job_name: "testing"
+        reprocess: "False"    
+        model_path: "baseline.pth"
+        write_output: "True"
+        seed: 1234     
+    Analysis:
+        job_name: "extract" 
+        reprocess: "False"   
+        model_path: "baseline.pth"
+        write_output: "True"
+        seed: 1234  
+
+    #Training:
+    #    job_name: "my_train_job"
+    #    reprocess: "False"    
+    #    model: CGCNN_demo   
+    #    load_model: "False"
+    #    save_model: "True"
+    #    model_path: "my_model.pth"
+    #    write_output: "True"
+    #    parallel: "True"
+    #    #seed=0 means random initalization
+    #    seed: 0        
+    #Predict:
+    #    job_name: "my_predict_job"
+    #    reprocess: "False"    
+    #    model_path: "my_model.pth"
+    #    write_output: "True"
+    #    seed: 0     
+    #Repeat:
+    #    job_name: "my_repeat_job"
+    #    reprocess: "False"    
+    #    model: CGCNN_demo   
+    #    model_path: "my_model.pth"
+    #    write_output: "False"
+    #    parallel: "True"
+    #    seed: 0      
+    #    ###specific options
+    #    #number of repeat trials
+    #    repeat_trials: 5
+
+   
+    
+Processing:
+    #Whether to use "inmemory" or "large" format for pytorch-geometric dataset. Reccomend inmemory unless the dataset is too large
+    dataset_type: "inmemory"  
+    #Path to data files
+    data_path: "" 
+    #Path to target file within data_path
+    target_path: "targets.csv"
+    #Method of obtaining atom idctionary: available:(provided, default, blank, generated)
+    dictionary_source: "default"   
+    #Path to atom dictionary file within data_path
+    dictionary_path: "atom_dict.json"     
+    #Format of data files (limit to those supported by ASE)
+    data_format: "poscar"
+    #Print out processing info 
+    verbose: "True"
+    #graph specific settings 
+    graph_max_radius : 8.0
+    graph_max_neighbors : 12
+    voronoi: "False"
+    edge_features: "True"
+    graph_edge_length : 50 
+    #SM specific settings
+    SM_descriptor: "False"
+    #SOAP specific settings
+    SOAP_descriptor: "False"
+    SOAP_rcut : 8.0
+    SOAP_nmax : 6
+    SOAP_lmax : 4
+    SOAP_sigma : 0.3
+
+Training:     
+    #Index of target column in targets.csv
+    target_index: 0
+    #Loss functions (from pytorch) examples: l1_loss, mse_loss, binary_cross_entropy
+    loss: "l1_loss"       
+    #Ratios for train/val/test split out of a total of 1  
+    train_ratio: 0.9
+    val_ratio: 0.05
+    test_ratio: 0.05
+    #Training print out frequency (print per n number of epochs)
+    verbosity: 50
+    
+Models:        
+    DEEP_GATGNN_demo:
+        model: DEEP_GATGNN
+        dim1: 64
+        dim2: 512
+        pre_fc_count: 1
+        gc_count: 20
+        post_fc_count: 1
+        pool: "global_add_pool"
+        pool_order: "early"
+        batch_norm: "True"
+        batch_track_stats: "True"
+        act: "softplus"
+        dropout_rate: 0.0
+        epochs: 200
+        lr: 0.005
+        batch_size: 128
+        optimizer: "AdamW"
+        optimizer_args: {}
+        scheduler: "ReduceLROnPlateau"
+        scheduler_args: {"mode":"min", "factor":0.8, "patience":10, "min_lr":0.00001, "threshold":0.0002}
+    GATGNN_demo:
+        model: GATGNN
+        dim1: 128
+        dim2: 512
+        pre_fc_count: 1
+        gc_count: 5
+        post_fc_count: 1
+        pool: "global_add_pool"
+        pool_order: "early"
+        batch_norm: "True"
+        batch_track_stats: "True"
+        act: "softplus"
+        dropout_rate: 0.0
+        epochs: 200
+        lr: 0.005
+        batch_size: 128
+        optimizer: "AdamW"
+        optimizer_args: {}
+        scheduler: "ReduceLROnPlateau"
+        scheduler_args: {"mode":"min", "factor":0.8, "patience":10, "min_lr":0.00001, "threshold":0.0002}   
+
+    
