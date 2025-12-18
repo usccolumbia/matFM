@@ -30,7 +30,7 @@ warnings.filterwarnings("ignore")
 mb = MatbenchBenchmark(
     autoload=False,
     subset=[
-        # "matbench_jdft2d",
+         "matbench_jdft2d",
         # "matbench_phonons", 
         # "matbench_dielectric",
 
@@ -39,7 +39,7 @@ mb = MatbenchBenchmark(
         # "matbench_perovskites",
 
         # "matbench_expt_gap",
-        "matbench_steels",
+        #"matbench_steels",
         
         # "matbench_mp_e_form",
         # "matbench_mp_gap",
